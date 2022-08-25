@@ -1,38 +1,126 @@
-.App {
-  text-align: center;
+/* font */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;700&display=swap");
+
+/* konfigurasi awal */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Outfit";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.parent {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* === NAVBAR === */
+nav {
+  background-color: white;
+  box-shadow: 0 5px 3px rgba(242, 230, 250, 0.2);
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  border: none;
+}
+
+.navbar-brand span {
+  color: #5921f6;
+  font-weight: 600;
+}
+
+.nav-link a.active {
+  text-decoration: none;
+  font-weight: 400;
+}
+
+nav .container-fluid {
+  margin: 0 20px 0 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* button navabar*/
+.btn-sign-in {
+  background-color: #f2e9fe;
+  color: #5921f6;
+  text-decoration: none;
+  border: none;
+  margin: 3px;
+  border-radius: 50px;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid white;
+}
+
+.btn-sign-in:hover {
+  border: 1px solid #5921f6;
+  background-color: white;
+  color: #5921f6;
+}
+
+.btn-sign-up {
+  background-color: #5921f6;
+  color: white;
+  text-decoration: none;
+  border: none;
+  margin: 3px;
+  border-radius: 50px;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid white;
+}
+
+.btn-sign-up:hover {
+  border: 1px solid #5921f6;
+  background-color: white;
+  color: #5921f6;
+}
+
+.btn-search {
+  background-color: #17a471;
+  color: white;
+  text-decoration: none;
+  border: none;
+  margin: 3px;
+  border-radius: 50px;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid white;
+}
+
+.btn-search:hover {
+  border: 1px solid #17a471;
+  background-color: white;
+  color: #17a471;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #292929;
+  color: #ffffff;
+  margin-top: 30px;
+}
+/* === PAGINATION === */
+.pagination .page-number .page-link {
+  text-decoration: none;
+}
+
+.pagination .page-number .active {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.icon-footer {
+  color: #ffffff;
+  font-size: 18px;
+  padding: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.icon-footer:hover {
+  color: #17a471;
 }

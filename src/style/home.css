@@ -1,0 +1,151 @@
+/* === DESCRIPTION === */
+.description {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.description-sme {
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+.description-sme h2 {
+  color: #17a471;
+}
+
+.description-sme h3 {
+  font-size: 60px;
+}
+
+.description-sme h3 span {
+  color: #5921f6;
+}
+
+.description-sme a {
+  background-color: #5921f6;
+  color: white;
+  text-decoration: none;
+  border: none;
+  margin: 3px;
+  border-radius: 50px;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid white;
+}
+
+.description-sme a:hover {
+  border: 1px solid #5921f6;
+  background-color: white;
+  color: #5921f6;
+}
+
+.myLottie {
+  max-width: 500px;
+}
+
+/* === BENEFIT === */
+.container-benefit {
+  background-color: #f2e9fe;
+}
+
+.benefit {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.title-benefit h2 {
+  color: #17a471;
+}
+
+.benefit-sme p {
+  width: 150px;
+}
+
+.benefit-sme div {
+  width: 70px;
+  height: 66px;
+  background-color: #17a471;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefit-sme:nth-child(2n) div {
+  background-color: #5921f6;
+}
+
+.benefit-sme img {
+  width: 50px;
+  margin-top: 7px;
+}
+
+.all-benefit {
+  margin-top: 40px;
+}
+/* === NEW EVENT === */
+.newEvent {
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newEvent-title {
+  text-align: center;
+}
+
+.newEvent-title h2 {
+  color: #17a471;
+}
+.carouselEvent {
+  margin-top: 30px;
+}
+.carousel-item {
+  transition: opacity 0.5s ease-in-out !important;
+}
+
+/* === CAROUSEL === */
+#carouselControls {
+  width: 20rem;
+}
+
+.description-new-event {
+  width: 18rem;
+}
+
+/* === MEDIA QUERY === */
+@media (max-width: 900px) {
+  .description {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .description-img img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .container-carouselEvent {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .description-new-event {
+    text-align: center;
+  }
+}
+@media (max-width: 500px) {
+  #carouselControls {
+    width: fit-content;
+  }
+
+  .description-new-event {
+    width: 100%;
+  }
+}
