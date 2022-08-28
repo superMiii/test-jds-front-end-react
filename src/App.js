@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import { SignIn } from "./components/SignIn";
 import { Home } from "./Home";
 import { RequireAuth } from "./utils/RequireAuth";
+import { Dashboard } from "./Dashboard";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
             element={
               <RequireAuth>
                 <Data />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
               </RequireAuth>
             }
           />

@@ -1,59 +1,143 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { City, District, Province, Village } from "../utils/Fetch";
 
-function Form() {
+function Form({ setListData, listData }) {
+  const navigate = useNavigate();
   const [provinces, setProvinces] = useState([]);
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [villages, setVillages] = useState([]);
   const [namaLengkap, setNamaLengkap] = useState("");
-  const [nik, setNik] = useState("");
-  const [nokk, setNokk] = useState("");
+  const [nik, setNik] = useState(0);
+  const [nokk, setNokk] = useState(0);
   const [fotoKtp, setFotoKtp] = useState(null);
   const [fotoKK, setFotoKK] = useState(null);
-  const [umur, setUmur] = useState("");
+  const [umur, setUmur] = useState(0);
   const [jenisKelamin, setJenisKelamin] = useState("");
   const [provinsi, setProvinsi] = useState("");
   const [kota, setKota] = useState("");
   const [kecamatan, setKecamatan] = useState("");
   const [kelurahan, setKelurahan] = useState("");
   const [alamat, setAlamat] = useState("");
-  const [rt, setRt] = useState("");
-  const [rw, setRw] = useState("");
+  const [rt, setRt] = useState(0);
+  const [rw, setRw] = useState(0);
   const [prapandemi, setPrapandemi] = useState("");
   const [pascapandemi, setPascapandemi] = useState("");
   const [alasan, setAlasan] = useState("");
-  const [alasanLainnya, setAlasanLainnya] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   useEffect(() => {
     const getProvince = async () => {
       const req = await Province();
       setProvinces(req);
     };
+    localStorage.setItem("dataBantuan", JSON.stringify(listData));
     getProvince();
-  }, []);
+  }, [listData]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      namaLengkap,
-      nik,
-      nokk,
-      fotoKtp,
-      fotoKK,
-      umur,
-      jenisKelamin,
-      provinsi,
-      kota,
-      kecamatan,
-      kelurahan,
-      alamat,
-      rt,
-      rw,
-      prapandemi,
-      pascapandemi,
-      alasan,
-    };
-    // console.log(forms);
+    if (namaLengkap === "") {
+      alert("Nama Tidak Boleh Kosong");
+    } else if (nik === 0) {
+      alert("NIK Tidak Boleh Kosong");
+    } else if (nik.length < 16) {
+      alert("NIK Tidak Boleh Kurang dari 16 Digit");
+    } else if (nik.length > 16) {
+      alert("NIK Tidak Boleh Lebih dari 16 Digit");
+    } else if (nokk === 0) {
+      alert("Nomor Kartu keluarga Tidak Boleh Kosong");
+    } else if (nokk.length < 16) {
+      alert("Nomor Kartu keluarga Kurang dari 16 Digit");
+    } else if (nokk.length > 16) {
+      alert("Nomor Kartu keluarga Lebih dari 16 Digit");
+    } else if (fotoKtp == null) {
+      alert("Foto EKTP tidak boleh kosong");
+    } else if (fotoKK == null) {
+      alert("Foto Kartu Keluarga tidak boleh kosong");
+    } else if (fotoKtp.size > 2000000) {
+      alert("File foto EKTP tidak boleh lebih dari 2MB");
+    } else if (fotoKK.size > 2000000) {
+      alert("File foto KK tidak boleh lebih dari 2MB");
+    } else if (umur === 0) {
+      alert("Umur Tidak Boleh Kosong");
+    } else if (umur < 25) {
+      alert("Umur Tidak Kurang dari 25 Tahun");
+    } else if (jenisKelamin === "") {
+      alert("Jenis Kelamin Tidak Boleh Kosong");
+    } else if (provinsi === "") {
+      alert("Provinsi Tidak Boleh Kosong");
+    } else if (kota === "") {
+      alert("Kab/Kota Tidak Boleh Kosong");
+    } else if (kecamatan === "") {
+      alert("Kecamatan Tidak Boleh Kosong");
+    } else if (kelurahan === "") {
+      alert("Kelurahan/Desa Tidak Boleh Kosong");
+    } else if (alamat === "") {
+      alert("Alamat Tidak Boleh Kosong");
+    } else if (rt === 0) {
+      alert("RT Tidak Boleh Kosong");
+    } else if (rw === 0) {
+      alert("RW Tidak Boleh Kosong");
+    } else if (alasan === "") {
+      alert("Pilihan tidak boleh kosong");
+    } else {
+      const data = {
+        namaLengkap,
+        nik,
+        nokk,
+        fotoKtp,
+        fotoKK,
+        umur,
+        jenisKelamin,
+        provinsi,
+        kota,
+        kecamatan,
+        kelurahan,
+        alamat,
+        rt,
+        rw,
+        prapandemi,
+        pascapandemi,
+        alasan,
+      };
+      let setTimer = Math.floor(Math.random() * 2000);
+      if (setTimer > 1500) {
+        setTimeout(() => {
+          console.log("Interval Server Error");
+          alert("Interval Server Error");
+        }, setTimer);
+      } else {
+        setTimeout(() => {
+          console.log("Berhasil");
+        }, Math.floor(Math.random() * 2000));
+        setListData((datas) => [...datas, data]);
+        console.log(listData);
+        Swal.fire({
+          icon: "success",
+          title: "Yeaayy",
+          text: "berhasil ditambahkan",
+        });
+        navigate("/data", { replace: true });
+        setNamaLengkap("");
+        setNik("");
+        setNokk("");
+        setFotoKtp("");
+        setFotoKK("");
+        setUmur("");
+        setJenisKelamin("");
+        setProvinsi("");
+        setKota("");
+        setKecamatan("");
+        setKelurahan("");
+        setRt("");
+        setRw("");
+        setPrapandemi("");
+        setPascapandemi("");
+        setAlasan("");
+        setAlamat("");
+      }
+    }
   };
   const selectedProvince = async (e) => {
     const req = await City(e);
@@ -77,6 +161,7 @@ function Form() {
       setFotoKtp({
         imageUrl: reader.result,
         name: file.target.files[0].name,
+        size: file.target.files[0].size,
       });
     };
     reader.readAsDataURL(file.target.files[0]);
@@ -92,6 +177,7 @@ function Form() {
       setFotoKK({
         imageUrl: reader.result,
         name: file.target.files[0].name,
+        size: file.target.files[0].size,
       });
     };
     reader.readAsDataURL(file.target.files[0]);
@@ -129,6 +215,7 @@ function Form() {
                       placeholder="Nama Lengkap"
                       className="form-control"
                       onChange={(e) => setNamaLengkap(e.target.value)}
+                      value={namaLengkap}
                     />
                   </div>
                 </div>
@@ -141,6 +228,7 @@ function Form() {
                       placeholder="NIK"
                       className="form-control"
                       onChange={(e) => setNik(e.target.value)}
+                      value={nik}
                     />
                   </div>
                   <div className="col-lg-6">
@@ -151,6 +239,7 @@ function Form() {
                       placeholder="NO KK"
                       className="form-control"
                       onChange={(e) => setNokk(e.target.value)}
+                      value={nokk}
                     />
                   </div>
                 </div>
@@ -187,6 +276,7 @@ function Form() {
                       placeholder="Umur"
                       className="form-control"
                       onChange={(e) => setUmur(e.target.value)}
+                      value={umur}
                     />
                   </div>
                   <div className="col-lg-6">
@@ -289,6 +379,7 @@ function Form() {
                       className="form-control"
                       id="alamat"
                       onChange={(e) => setAlamat(e.target.value)}
+                      value={alamat}
                     ></textarea>
                   </div>
                 </div>
@@ -301,6 +392,7 @@ function Form() {
                       placeholder="RT"
                       id="rt"
                       onChange={(e) => setRt(e.target.value)}
+                      value={rt}
                     />
                   </div>
                   <div className="col-lg-6">
@@ -311,6 +403,7 @@ function Form() {
                       placeholder="RT"
                       id="rw"
                       onChange={(e) => setRw(e.target.value)}
+                      value={rw}
                     />
                   </div>
                 </div>
@@ -323,6 +416,7 @@ function Form() {
                       placeholder="Penghasilan prapandemi"
                       id="penghasilanpra"
                       onChange={(e) => setPrapandemi(e.target.value)}
+                      value={prapandemi}
                     />
                   </div>
                   <div className="col-lg-6">
@@ -333,18 +427,22 @@ function Form() {
                       placeholder="Penghasilan pascapandemi"
                       id="penghasilanpasca"
                       onChange={(e) => setPascapandemi(e.target.value)}
+                      value={pascapandemi}
                     />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col">
                     <label>Alasan membutuhkan bantuan</label>
+                    {/* <div onChange={(e) => setAlasan(e.target.value)}> */}
                     <div className="form-check">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault1"
+                        value="Kehilangan pekerjaan"
+                        onChange={(e) => setAlasan(e.target.value)}
                       />
                       <label
                         className="form-check-label"
@@ -352,11 +450,15 @@ function Form() {
                       >
                         Kehilangan pekerjaan
                       </label>
+                    </div>
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
+                        value="Kepala keluarga terdampak atau korban Covid-19"
+                        onChange={(e) => setAlasan(e.target.value)}
                       />
                       <label
                         className="form-check-label"
@@ -364,11 +466,15 @@ function Form() {
                       >
                         Kepala keluarga terdampak atau korban Covid-19
                       </label>
+                    </div>
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault3"
+                        value="Tergolong fakir/miskin semenjak sebelum Covid-19"
+                        onChange={(e) => setAlasan(e.target.value)}
                       />
                       <label
                         className="form-check-label"
@@ -376,16 +482,21 @@ function Form() {
                       >
                         Tergolong fakir/miskin semenjak sebelum Covid-19
                       </label>
+                    </div>
+                    {/* </div> */}
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault4"
+                        value={alasan}
                       />
                       <input
                         className="form-control"
                         placeholder="lainnya"
-                        onChange={(e) => setAlasanLainnya(e.target.value)}
+                        onChange={(e) => setAlasan(e.target.value)}
+                        // value={alasan}
                       />
                     </div>
                   </div>

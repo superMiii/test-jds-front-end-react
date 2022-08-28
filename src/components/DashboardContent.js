@@ -1,4 +1,4 @@
-export const Dashboard = () => {
+export const DashboardContent = () => {
   return (
     <>
       <h1 className="mt-4">Dashboard</h1>
