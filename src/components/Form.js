@@ -122,11 +122,10 @@ function Form({ setListData, listData }) {
           console.log("Berhasil");
           localStorage.setItem(
             "dataBantuan",
-            JSON.stringify([...listData, data])
+            JSON.stringify(listData?.length > 0 ? [...listData, data] : [data])
           );
         }, Math.floor(Math.random() * 2000));
         setListData((datas) => [...datas, data]);
-        console.log(listData);
         Swal.fire({
           icon: "success",
           title: "Yeaayy",
