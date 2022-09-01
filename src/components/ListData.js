@@ -72,7 +72,7 @@ export const ListData = () => {
               </tr>
             </thead>
             <tbody>
-              {listData.length > 0 ? (
+              {listData?.length > 0 ? (
                 listData?.map((data, i) => (
                   <tr key={i}>
                     <th scope="row">{i + 1}</th>
