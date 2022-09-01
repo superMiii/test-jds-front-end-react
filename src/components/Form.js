@@ -125,7 +125,7 @@ function Form({ setListData, listData }) {
             JSON.stringify(listData?.length > 0 ? [...listData, data] : [data])
           );
         }, Math.floor(Math.random() * 2000));
-        setListData((datas) => [...datas, data]);
+        setListData((datas) => (datas?.length > 0 ? [...datas, data] : [data]));
         Swal.fire({
           icon: "success",
           title: "Yeaayy",
