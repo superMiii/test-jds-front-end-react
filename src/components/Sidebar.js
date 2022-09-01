@@ -26,7 +26,7 @@ export const Sidebar = () => {
             Dashboard
           </Link>
           <Link to="/data" className="btn-sidebar">
-            List
+            Data Bantuan
           </Link>
         </div>
       </div>

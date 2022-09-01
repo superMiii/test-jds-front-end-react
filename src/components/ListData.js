@@ -6,12 +6,24 @@ import Form from "./Form";
 export const ListData = () => {
   const [listData, setListData] = useState([]);
   useEffect(() => {
-    JSON.parse(localStorage.getItem("dataBantuan"));
+    setListData(JSON.parse(localStorage.getItem("dataBantuan")));
   }, []);
-  const handleDelete = (item) => {
-    const data = JSON.parse(localStorage.getItem("dataBantuan"))[item];
-    if (data.length === 0) {
-      localStorage.removeItem(data);
+  const handleDelete = async (item) => {
+    const confirm = await Swal.fire({
+      title: "Are you sure want to delete this item",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (!result.isConfirmed) return false;
+      return true;
+    });
+    if (confirm) {
+      const data = listData.filter((items) => items.id !== item);
+      localStorage.setItem("dataBantuan", JSON.stringify(data));
+      setListData(data);
       Swal.fire({
         icon: "success",
         title: "Yeaayy",
@@ -96,8 +108,9 @@ export const ListData = () => {
                   <td>
                     <button
                       type="button"
-                      className="btn btn-primary"
-                      onClick={() => handleDelete(i)}
+                      className="badge bg-primary"
+                      onClick={() => handleDelete(data.id)}
+                      style={{ border: "none" }}
                     >
                       Delete
                     </button>

@@ -9,18 +9,12 @@ export const DashboardContent = () => {
         <div className="col">
           <div className="card bg-primary text-white mb-4">
             <div className="card-body">
-              User
+              Total Penerima Data Bantuan
               <div className="quantyty">
-                <h1>Hai</h1>
+                <h1>
+                  {JSON.parse(localStorage.getItem("dataBantuan")).length}
+                </h1>
               </div>
-            </div>
-            <div className="card-footer d-flex align-items-center justify-content-between">
-              <a
-                className="small text-white stretched-link"
-                href="#/admin_user"
-              >
-                View Details
-              </a>
             </div>
           </div>
         </div>

@@ -32,7 +32,6 @@ function Form({ setListData, listData }) {
       const req = await Province();
       setProvinces(req);
     };
-    localStorage.setItem("dataBantuan", JSON.stringify(listData));
     getProvince();
   }, [listData]);
   const handleSubmit = (e) => {
@@ -82,7 +81,18 @@ function Form({ setListData, listData }) {
     } else if (alasan === "") {
       alert("Pilihan tidak boleh kosong");
     } else {
+      const d = new Date();
+      let text = d.toISOString();
+      const provinceSelected = provinces.filter((item) => item.id === provinsi);
+      const kotaSelected = cities.filter((item) => item.id === kota);
+      const kecamatanSelected = districts.filter(
+        (item) => item.id === kecamatan
+      );
+      const kelurahanSelected = villages.filter(
+        (item) => item.id === kelurahan
+      );
       const data = {
+        id: text,
         namaLengkap,
         nik,
         nokk,
@@ -90,10 +100,10 @@ function Form({ setListData, listData }) {
         fotoKK,
         umur,
         jenisKelamin,
-        provinsi,
-        kota,
-        kecamatan,
-        kelurahan,
+        provinsi: provinceSelected[0].name,
+        kota: kotaSelected[0].name,
+        kecamatan: kecamatanSelected[0].name,
+        kelurahan: kelurahanSelected[0].name,
         alamat,
         rt,
         rw,
@@ -110,6 +120,10 @@ function Form({ setListData, listData }) {
       } else {
         setTimeout(() => {
           console.log("Berhasil");
+          localStorage.setItem(
+            "dataBantuan",
+            JSON.stringify([...listData, data])
+          );
         }, Math.floor(Math.random() * 2000));
         setListData((datas) => [...datas, data]);
         console.log(listData);
@@ -286,6 +300,7 @@ function Form({ setListData, listData }) {
                       aria-label="Default select example"
                       id="jenisKelamin"
                       onChange={(e) => setJenisKelamin(e.target.value)}
+                      value={jenisKelamin}
                     >
                       <option>Pilihan</option>
                       <option value="Laki-laki">Laki-laki</option>
@@ -304,6 +319,7 @@ function Form({ setListData, listData }) {
                         selectedProvince(e.target.value);
                         setProvinsi(e.target.value);
                       }}
+                      value={provinsi}
                     >
                       <option>PILIHAN</option>
                       {provinces.map((province, index) => (
@@ -323,6 +339,7 @@ function Form({ setListData, listData }) {
                         selectedCity(e.target.value);
                         setKota(e.target.value);
                       }}
+                      value={kota}
                     >
                       <option>PILIHAN</option>
                       {cities.map((city, index) => (
@@ -344,6 +361,7 @@ function Form({ setListData, listData }) {
                         selectedDistricts(e.target.value);
                         setKecamatan(e.target.value);
                       }}
+                      value={kecamatan}
                     >
                       <option>PILIHAN</option>
                       {districts.map((district, index) => (
@@ -360,6 +378,7 @@ function Form({ setListData, listData }) {
                       aria-label="Default select example"
                       id="kelurahan"
                       onChange={(e) => setKelurahan(e.target.value)}
+                      value={kelurahan}
                     >
                       <option>PILIHAN</option>
                       {villages.map((village, index) => (
