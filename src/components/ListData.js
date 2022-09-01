@@ -72,50 +72,58 @@ export const ListData = () => {
               </tr>
             </thead>
             <tbody>
-              {listData?.map((data, i) => (
-                <tr key={i}>
-                  <th scope="row">{i + 1}</th>
-                  <td>{data.namaLengkap}</td>
-                  <td>{data.nik}</td>
-                  <td>{data.nokk}</td>
-                  <td>
-                    <img
-                      src={data.fotoKtp.imageUrl}
-                      className="img-thumbnail"
-                      alt="fotoKtp"
-                    />
-                  </td>
-                  <td>
-                    <img
-                      src={data.fotoKK.imageUrl}
-                      className="img-thumbnail"
-                      alt="fotoKtp"
-                    />
-                  </td>
-                  <td>{data.umur}</td>
-                  <td>{data.jenisKelamin}</td>
-                  <td>{data.provinsi}</td>
-                  <td>{data.kota}</td>
-                  <td>{data.kecamatan}</td>
-                  <td>{data.kelurahan}</td>
-                  <td>{data.alamat}</td>
-                  <td>{data.rt}</td>
-                  <td>{data.rw}</td>
-                  <td>{data.prapandemi}</td>
-                  <td>{data.pascapandemi}</td>
-                  <td>{data.alasan}</td>
-                  <td>
-                    <button
-                      type="button"
-                      className="badge bg-primary"
-                      onClick={() => handleDelete(data.id)}
-                      style={{ border: "none" }}
-                    >
-                      Delete
-                    </button>
+              {listData.length > 0 ? (
+                listData?.map((data, i) => (
+                  <tr key={i}>
+                    <th scope="row">{i + 1}</th>
+                    <td>{data.namaLengkap}</td>
+                    <td>{data.nik}</td>
+                    <td>{data.nokk}</td>
+                    <td>
+                      <img
+                        src={data.fotoKtp.imageUrl}
+                        className="img-thumbnail"
+                        alt="fotoKtp"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src={data.fotoKK.imageUrl}
+                        className="img-thumbnail"
+                        alt="fotoKtp"
+                      />
+                    </td>
+                    <td>{data.umur}</td>
+                    <td>{data.jenisKelamin}</td>
+                    <td>{data.provinsi}</td>
+                    <td>{data.kota}</td>
+                    <td>{data.kecamatan}</td>
+                    <td>{data.kelurahan}</td>
+                    <td>{data.alamat}</td>
+                    <td>{data.rt}</td>
+                    <td>{data.rw}</td>
+                    <td>{data.prapandemi}</td>
+                    <td>{data.pascapandemi}</td>
+                    <td>{data.alasan}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="badge bg-primary"
+                        onClick={() => handleDelete(data.id)}
+                        style={{ border: "none" }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={19} className="text-center">
+                    Tidak ada data
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
